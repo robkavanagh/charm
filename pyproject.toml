@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "CHARM"
+version = "1.0"
+description = "A framework for characterising magnetic fields using probabilistic inference from time series radio data."
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.4.2,<3", "ultranest>=4.5,<5", "h5py>=3.16,<4"]
+authors = [{name = "Rob Kavanagh"}]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["charm*"]

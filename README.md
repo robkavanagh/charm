@@ -1,14 +1,10 @@
-# Magnetic geometry retrieval framework
+# CHARM
+CHARM is a framework for characterising magnetic fields via Bayesian inference from radio-emitting objects like stars, brown dwarfs, and planets. Different physical models can be assumed for the magnetic field and its associated emission. It uses the nested sampling algorithm [UltraNest](https://johannesbuchner.github.io/UltraNest/) to explore the complex high-dimensional likelihood space of the chosen model given the time series data, providing probabilistic inferences (posteriors) for each model parameter.
 
-This repository contains the example code ```magnetic-retrival-example.py``` for retrieving the magnetic field geometry of ultracool dwarfs (or any magnetised body) from detections of radio emission as demonstrated in [Kavanagh et al. (2024)](https://doi.org/10.1051/0004-6361/202452094). The model assumes that the emission originates from **active field lines** within a dipolar magnetic field that rotates rigidly with the object, driven by the electron cyclotron maser instability. The nested sampling algorithm [Ultranest](https://johannesbuchner.github.io/UltraNest/) is used to explore the likelihood space, which provides the posterior distributions for each model parameter.
+So far, the following model has been implemented:
 
-The example code is set up to read in the file ```data.csv```, which contains columns of the rotation phase and Stokes V flux density at two different frequency bands (including their errors). Note that the frequency bands of 950-1150 MHz and 1300-1500 MHz are hard-coded in the script. A joint likelihood is computed for these two bands, although this can be modified easily for a single observing band. The code can be parallelised easily, and is scaleable for high-performance computing resources via e.g. ```mpiexec``` (note that this requires the package ```h5py```). From our testing, splitting the task over more than 32 cores results in a slow down in performance.
-
-Here is an example of the magnetic geometry inferred for the ultracool dwarf WISE J062309.94-045624.6 (J0623):
-
-<p align="center">
-	<img src="fig.jpg" width="50%"/>
-</p>
+### Active field line
+The model assumes that the emission originates from an **active field line** within a dipolar magnetic field that rotates rigidly with the magnetised object, driven by the electron cyclotron maser instability. 
 
 ## Published use cases (as of March 2026)
 - Constraining the magnetic geometry of the brown dwarf WISE J112254.72+255022.2 ([Guirado+ 2025](https://doi.org/10.3847/1538-4357/add5f3)).
