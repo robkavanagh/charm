@@ -1,3 +1,3 @@
 from charm.functions.make_log_likelihood import make_log_likelihood
 from charm.functions.make_log_prior_transform import make_log_prior_transform
-from charm.functions.run_sampler import run_sampler
+from charm.functions.sampler import sampler

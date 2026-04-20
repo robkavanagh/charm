@@ -1,23 +1,20 @@
 import numpy as np
-from charm.param import Param, ParamCollection
-
 
 class afl:
 
 	def __init__(self):
 
-		self.params = ParamCollection({
-			'cos_i':   Param(range = (0, 1)),
-			'beta':    Param(range = (0, np.pi / 2)),
-			'phi_0':   Param(range = (0, 2 * np.pi),  wrapped = True),
-			'alpha':   Param(range = (0, np.pi / 2)),
-			'dalpha':  Param(range = (0, np.pi / 2)),
-			'theta_B': Param(range = (0, np.pi / 2)),
-			'phi_B':   Param(range = (0, 2 * np.pi),  wrapped = True),
-			'F':       Param(range = (0, 1)),
-		})
-
-		self.param_names = self.params.names
+		# Parameter properties
+		self.params = np.array([
+			('cos_i', 0, 1, False),
+			('beta', 0, 0.5 * np.pi, False),
+			('phi_0', 0, 2 * np.pi, True),
+			('alpha', 0, 0.5 * np.pi, False),
+			('dalpha', 0, 0.5 * np.pi, False),
+			('theta_B', 0, 0.5 * np.pi, False),
+			('phi_B', 0, 2 * np.pi, True),
+			('F', 0, 1, False)], 
+			dtype = [('names', 'U10'), ('lower', float), ('upper', float), ('wrapped?', bool)])
 
 	def __call__(self, params, phases):
 
