@@ -26,7 +26,7 @@ This model assumes that emission originates from an **active field line** (AFL) 
 For more details, see [Kavanagh+ 2024](https://doi.org/10.1051/0004-6361/202452094). See the sketch below also for a visual representation:
 
 <p align='center'>
-<img width="50%" src="assets/sketch afl.png" />
+<img width="450" src="assets/sketch afl.png" />
 </p>
 
 
@@ -44,7 +44,7 @@ This model assumes that the emission comes from auroral rings centered above the
 It is described in more detail in [Bloot+ 2024](https://doi.org/10.1051/0004-6361/202348065). See the sketch below also:
 
 <p align='center'>
-<img width="50%" src="assets/sketch ring.png" />
+<img width="450" src="assets/sketch ring.png" />
 </p>
 
 ## Model configuration
@@ -93,7 +93,7 @@ The script `examples/run sampler.py` shows an example of applying the sampler to
 Given the high-dimensional and probabilistic nature of the extracted parameters, a corner plot is best suited to visualise the results from `sampler`. The script `examples/plot corner.py` can be run to generate a corner plot for the results from `run sampler.py`. This should produce a figure showing the posteriors for each parameter as red contours with the parameters used to generate the synthetic time series overlaid in blue:
 
 <p align='center'>
-<img width="50%" src="assets/example corner plot.png" />
+<img width="600" src="assets/example corner plot.png" />
 </p>
 
 The sampler should converge on parameters close to those used to synthesise (i.e., the blue lines should lie close to the peak of the 1D histograms above each column). Note that while `ultranest` comes bundled with the package `corner`, you will also need to install `scipy` in order to smooth the contours in the script provided.
@@ -101,13 +101,13 @@ The sampler should converge on parameters close to those used to synthesise (i.e
 You can also use the script `examples/plot posterior time series.py` to sample the posteriors and plot the corresponding time series to compare it to the original data:
 
 <p align='center'>
-<img width="50%" src="assets/example posterior time series.png" />
+<img width="600" src="assets/example posterior time series.png" />
 </p>
 
 Finally, you can also visualise the 3D geometry of the magnetic field using the script `examples/plot 3D geometry.py`. This shows the rotation axis, magnetic axis, and magnetic precession relative to the line of sight:
 
 <p align='center'>
-<img width="50%" src="assets/example 3D geometry.png" />
+<img width="600" src="assets/example 3D geometry.png" />
 </p>
 
 ## Parallelisation
