@@ -6,19 +6,19 @@ class afl:
 
 		# Parameter properties
 		self.params = np.array([
-			('cos_i', 0, 1, False),
-			('beta', 0, 0.5 * np.pi, False),
-			('phi_0', 0, 2 * np.pi, True),
-			('alpha', 0, 0.5 * np.pi, False),
-			('dalpha', 0, 0.5 * np.pi, False),
-			('theta_B', 0, 0.5 * np.pi, False),
-			('phi_B', 0, 2 * np.pi, True),
-			('F', 0, 1, False)], 
-			dtype = [('names', 'U10'), ('lower', float), ('upper', float), ('wrapped?', bool)])
+			('cos_i', 0, 1, False, 'dimensionless'),
+			('beta', 0, 0.5 * np.pi, False, 'radians'),
+			('phi_0', 0, 2 * np.pi, True, 'radians'),
+			('theta', 0, 0.5 * np.pi, False, 'radians'),
+			('phi', 0, 2 * np.pi, True, 'radians'),
+			('F_0', 0, 1, False, 'flux units'),
+			('alpha', 0, 0.5 * np.pi, False, 'radians'),
+			('dalpha', 0, 0.5 * np.pi, False, 'radians')], 
+			dtype = [('names', 'U10'), ('lower', float), ('upper', float), ('wrapped?', bool), ('units', 'U10')])
 
 	def __call__(self, params, phases):
 
-		cos_i, beta, phi_0, alpha, dalpha, theta_B, phi_B, F = params
+		cos_i, beta, phi_0, theta, phi, F_0, alpha, dalpha = params
 
 		# Rotation phase
 		phi_rot = phi_0 + 2 * np.pi * phases
@@ -33,16 +33,16 @@ class afl:
 		g = cos_i * cos_beta
 
 		# Repeated terms
-		cos_theta_B = np.cos(theta_B)
-		cos_phi_B = np.cos(phi_B)
+		cos_theta = np.cos(theta)
+		cos_phi = np.cos(phi)
 
 		# Compute the beam angle from each hemisphere
-		denom = (1 + 3 * cos_theta_B ** 2) ** 0.5
-		a = 3 * np.sin(theta_B) * cos_theta_B / denom
-		b = (3 * cos_theta_B ** 2 - 1) / denom
-		c = - sin_i * np.sin(phi_B)
-		d = sin_i * cos_beta * cos_phi_B
-		e = - cos_i * sin_beta * cos_phi_B
+		denom = (1 + 3 * cos_theta ** 2) ** 0.5
+		a = 3 * np.sin(theta) * cos_theta / denom
+		b = (3 * cos_theta ** 2 - 1) / denom
+		c = - sin_i * np.sin(phi)
+		d = sin_i * cos_beta * cos_phi
+		e = - cos_i * sin_beta * cos_phi
 		T_1 = a * c
 		T_2 = a * d
 		T_3 = b * f
@@ -51,4 +51,4 @@ class afl:
 		gamma_N = np.arccos(T_1 * sin_phi_rot + (T_2 + T_3) * cos_phi_rot + (T_4 + T_5))
 		gamma_S = np.arccos(T_1 * sin_phi_rot + (T_2 - T_3) * cos_phi_rot + (T_4 - T_5))
 
-		return F * (np.exp(- 0.5 * ((gamma_N - alpha) / dalpha) ** 2) - np.exp(- 0.5 * ((gamma_S - alpha) / dalpha) ** 2))
+		return F_0 * (np.exp(- 0.5 * ((gamma_N - alpha) / dalpha) ** 2) - np.exp(- 0.5 * ((gamma_S - alpha) / dalpha) ** 2))
