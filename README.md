@@ -23,7 +23,7 @@ This model assumes that emission originates from an **active field line** (AFL) 
 - `alpha`: Opening angle of the emission cone
 - `dalpha`: Thickness of the emission cone
 
-For more details, see [Kavanagh+ 2024](https://doi.org/10.1051/0004-6361/202452094). See the sketch below also for a visual representation:
+For more details, see [Kavanagh+ (2024)](https://doi.org/10.1051/0004-6361/202452094). See the sketch below also for a visual representation:
 
 <p align='center'>
 <img width="450" src="assets/sketch afl.png" />
@@ -41,7 +41,7 @@ This model assumes that the emission comes from auroral rings centered above the
 - `alpha`: Same as for `afl`
 - `dalpha`: Same as for `afl`
 
-It is described in more detail in [Bloot+ 2024](https://doi.org/10.1051/0004-6361/202348065). See the sketch below also:
+It is described in more detail in [Bloot+ (2024)](https://doi.org/10.1051/0004-6361/202348065). See the sketch below also:
 
 <p align='center'>
 <img width="450" src="assets/sketch ring.png" />
@@ -121,3 +121,6 @@ where `n` is the number of processors you wish to use. See [here](https://johann
 As of April 2026, CHARM has been used in the following works:
 - Forecasting the detection yields of brown dwarfs for different build configurations of the [Square Kilometre Array](https://www.skao.int) (Kavanagh+ in press).
 - Constraining the magnetic geometry of the brown dwarf WISE J112254.72+255022.2 ([Guirado+ 2025](https://doi.org/10.3847/1538-4357/add5f3)).
+
+## Acknowledgement
+If you use CHARM for analyses in your publications, please cite [Kavanagh+ (2024)](https://doi.org/10.1051/0004-6361/202452094) for the framework and active field line model, and [Bloot+ (2024)](https://doi.org/10.1051/0004-6361/202348065) for the auroral ring model.
